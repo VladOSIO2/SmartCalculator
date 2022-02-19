@@ -6,24 +6,21 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        boolean exit = false;
         while (scanner.hasNext()) {
-            String equation = scanner.nextLine();
-            switch (equation.trim()) {
-                case "/exit" :
-                    System.out.println("Bye!");
-                    exit = true;
-                    break;
+            String expression = scanner.nextLine().trim();
+            if (expression.equals("/exit")) {
+                System.out.println("Bye!");
+                break; //stopping the scan, exit keyword entered
+            }
+            switch (expression) {
                 case "" :
                     break;
                 case "/help" :
-                    System.out.println("The program calculates the sum of numbers");
+                    Calculator.printHelp();
                     break;
                 default :
-                    System.out.println(Calculator.sum(equation));
-            }
-            if (exit) {
-                break;
+                    System.out.println(Calculator.eval(expression));
+                    break;
             }
         }
     }
